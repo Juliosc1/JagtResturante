@@ -4,10 +4,7 @@ import com.jagt.jagtresturante.menu.Menu;
 
 import com.jagt.jagtresturante.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +19,10 @@ public class MenuController {
     @GetMapping
     public List<Menu> getAllMenus() {
         return menuRepository.findAll();
+    }
+
+    @PostMapping
+    public Menu createMenu(@RequestBody Menu menu) {
+        return menuRepository.save(menu);
     }
 }
