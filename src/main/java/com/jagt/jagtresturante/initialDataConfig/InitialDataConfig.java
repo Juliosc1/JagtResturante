@@ -14,13 +14,9 @@ public class InitialDataConfig {
     @Bean
     CommandLineRunner commandLineRunner(MenuRepository menuRepository) {
         return args -> {
-            Menu menu = new Menu();
-            menu.setName("Pasta Carbonara");
-            menu.setCategory("Main course");
-            menu.setTypeOfDishes("Pasta");
-            menu.setPrice(10);
-
-            menuRepository.saveAll(List.of(menu));
+            Menu menu = new Menu("Pasta Carbonara","Main Course", "Pasta", 10);
+            Menu menu1 = new Menu("Classic lasagne", "Main Course","Pasta", 12);
+            menuRepository.saveAll(List.of(menu, menu1));
         };
     }
 }
