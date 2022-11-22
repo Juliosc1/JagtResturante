@@ -1,4 +1,4 @@
-package com.jagt.jagtresturante.menu;
+package com.jagt.jagtresturante.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

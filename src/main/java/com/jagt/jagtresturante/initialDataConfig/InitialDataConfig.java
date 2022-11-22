@@ -1,6 +1,6 @@
 package com.jagt.jagtresturante.initialDataConfig;
 
-import com.jagt.jagtresturante.menu.Menu;
+import com.jagt.jagtresturante.model.Menu;
 import com.jagt.jagtresturante.repository.MenuRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

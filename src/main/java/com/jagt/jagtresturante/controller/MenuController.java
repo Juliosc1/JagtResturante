@@ -1,6 +1,6 @@
 package com.jagt.jagtresturante.controller;
 
-import com.jagt.jagtresturante.menu.Menu;
+import com.jagt.jagtresturante.model.Menu;
 
 import com.jagt.jagtresturante.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
