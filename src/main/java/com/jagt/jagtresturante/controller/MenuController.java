@@ -4,6 +4,7 @@ import com.jagt.jagtresturante.model.Menu;
 
 import com.jagt.jagtresturante.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,5 +25,18 @@ public class MenuController {
     @PostMapping
     public Menu createMenu(@RequestBody Menu menu) {
         return menuRepository.save(menu);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<Menu> updateMenu(@PathVariable long id,@RequestBody Menu menuDetails) {
+    Menu updateMenu = menuRepository.findById(id)
+            .orElseThrow();
+    updateMenu.setName(menuDetails.getName());
+    updateMenu.setCategory(menuDetails.getCategory());
+    updateMenu.setTypeOfDishes(menuDetails.getTypeOfDishes());
+    updateMenu.setPrice(menuDetails.getPrice());
+
+    menuRepository.save(updateMenu);
+    return ResponseEntity.ok(updateMenu);
     }
 }
