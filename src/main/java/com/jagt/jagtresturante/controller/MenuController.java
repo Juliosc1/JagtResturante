@@ -4,6 +4,7 @@ import com.jagt.jagtresturante.model.Menu;
 
 import com.jagt.jagtresturante.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,5 +39,13 @@ public class MenuController {
 
     menuRepository.save(updateMenu);
     return ResponseEntity.ok(updateMenu);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<HttpStatus> deleteMenu(@PathVariable long id) {
+        Menu menu = menuRepository.findById(id)
+                .orElseThrow();
+        menuRepository.delete(menu);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
