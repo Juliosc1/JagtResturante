@@ -1,5 +1,7 @@
 package com.jagt.jagtresturante.controller;
 
+import com.jagt.jagtresturante.exception.ApiRequestException;
+import com.jagt.jagtresturante.exception.ResourceNotFoundException;
 import com.jagt.jagtresturante.model.Menu;
 
 import com.jagt.jagtresturante.repository.MenuRepository;
@@ -8,15 +10,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/menu")
 public class MenuController {
 
+    private final MenuRepository menuRepository;
     @Autowired
-    private MenuRepository menuRepository;
+    public MenuController(MenuRepository menuRepository) {
+        this.menuRepository = menuRepository;
+    }
 
     @GetMapping
     public List<Menu> getAllMenus() {
@@ -27,6 +34,28 @@ public class MenuController {
     public Menu createMenu(@RequestBody Menu menu) {
         return menuRepository.save(menu);
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Menu> getMenuById(@PathVariable long id)
+        throws ApiRequestException {
+        Menu menu = menuRepository.findById(id)
+                .orElseThrow(() -> new ApiRequestException("Haha Menu dose not exist with id: " + id));
+        return ResponseEntity.ok().body(menu);
+    }
+
+    /*@GetMapping("{id}")
+    public ResponseEntity<Menu> getEmployeeById(@PathVariable long id) throws ApiRequestException {
+        try {
+            Optional<Menu> byId = menuRepository.findById(id);
+            if (byId == null) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            throw new ApiRequestException("Employee not exist with id:" + id);
+            //return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }*/
 
     @PutMapping("{id}")
     public ResponseEntity<Menu> updateMenu(@PathVariable long id,@RequestBody Menu menuDetails) {
