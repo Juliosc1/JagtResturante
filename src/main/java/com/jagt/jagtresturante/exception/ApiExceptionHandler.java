@@ -8,16 +8,16 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
-@ControllerAdvice
+@ControllerAdvice //Allows you to handle exceptions across the whole application
 public class ApiExceptionHandler {
 
-    @ExceptionHandler(value = {ApiRequestException.class})
+    @ExceptionHandler(value = {ApiRequestException.class}) //Used for handling exceptions in specific handler classes
     public ResponseEntity<Object> handleApiRequestException(ApiRequestException exception) {
-        //Create payload containing exception details
+        //containing exception details
         HttpStatus badRequest = HttpStatus.BAD_REQUEST;
 
         ApiException apiException = new ApiException(
-                exception.getMessage(), badRequest, ZonedDateTime.now(ZoneId.of("Z"))
+                exception.getMessage(), badRequest, ZonedDateTime.now()
         );
         //Return response entity
         return new ResponseEntity<>(apiException, badRequest);

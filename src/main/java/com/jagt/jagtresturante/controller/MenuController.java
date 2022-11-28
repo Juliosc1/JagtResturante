@@ -5,13 +5,13 @@ import com.jagt.jagtresturante.model.Menu;
 
 import com.jagt.jagtresturante.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/menu")
 public class MenuController {
@@ -37,7 +37,8 @@ public class MenuController {
         throws ApiRequestException {
         Menu menu = menuRepository.findById(id)
                 .orElseThrow(() -> new ApiRequestException("Haha Menu dose not exist with id: " + id));
-        return ResponseEntity.ok().body(menu);
+        return new ResponseEntity<>(menu, HttpStatus.OK);
+        //return ResponseEntity.ok(menu);
     }
 
     /*@GetMapping("{id}")
@@ -68,10 +69,10 @@ public class MenuController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<HttpStatus> deleteMenu(@PathVariable long id) {
+    public ResponseEntity<Menu> deleteMenu(@PathVariable long id) {
         Menu menu = menuRepository.findById(id)
                 .orElseThrow();
         menuRepository.delete(menu);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(menu, HttpStatus.NO_CONTENT);
     }
 }
