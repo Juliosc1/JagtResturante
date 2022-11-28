@@ -1,7 +1,6 @@
 package com.jagt.jagtresturante.controller;
 
 import com.jagt.jagtresturante.exception.ApiRequestException;
-import com.jagt.jagtresturante.exception.ResourceNotFoundException;
 import com.jagt.jagtresturante.model.Menu;
 
 import com.jagt.jagtresturante.repository.MenuRepository;
@@ -10,9 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.FileNotFoundException;
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
