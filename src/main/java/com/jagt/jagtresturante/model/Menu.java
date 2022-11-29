@@ -33,7 +33,7 @@ public class Menu {
     private String typeOfDishes;
 
     @NonNull
-    @Column(name = "price")
-    private Integer price;
+    @Column(name = "priceInEuro")
+    private Integer priceInEuro;
 
 }

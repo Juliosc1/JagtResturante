@@ -16,7 +16,10 @@ public class InitialDataConfig {
         return args -> {
             Menu menu = new Menu("Pasta Carbonara","Main Course", "Pasta", 10);
             Menu menu1 = new Menu("Classic lasagne", "Main Course","Pasta", 12);
-            menuRepository.saveAll(List.of(menu, menu1));
+            Menu menu2 = new Menu("Crostini", "Appetizers", "Bread", 5);
+            Menu menu3 = new Menu("Lemon Gelato", "Dessert", "Ice Cream", 7);
+            Menu menu4 = new Menu("Pizza Ai Funghi", "Main Course", "Pizza", 13);
+            menuRepository.saveAll(List.of(menu, menu1, menu2, menu3, menu4));
         };
     }
 }

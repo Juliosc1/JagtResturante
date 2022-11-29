@@ -5,7 +5,6 @@ import com.jagt.jagtresturante.model.Menu;
 
 import com.jagt.jagtresturante.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,22 +37,7 @@ public class MenuController {
         Menu menu = menuRepository.findById(id)
                 .orElseThrow(() -> new ApiRequestException("Haha Menu dose not exist with id: " + id));
         return new ResponseEntity<>(menu, HttpStatus.OK);
-        //return ResponseEntity.ok(menu);
     }
-
-    /*@GetMapping("{id}")
-    public ResponseEntity<Menu> getEmployeeById(@PathVariable long id) throws ApiRequestException {
-        try {
-            Optional<Menu> byId = menuRepository.findById(id);
-            if (byId == null) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            throw new ApiRequestException("Employee not exist with id:" + id);
-            //return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }*/
 
     @PutMapping("{id}")
     public ResponseEntity<Menu> updateMenu(@PathVariable long id,@RequestBody Menu menuDetails) {
@@ -62,7 +46,7 @@ public class MenuController {
     updateMenu.setName(menuDetails.getName());
     updateMenu.setCategory(menuDetails.getCategory());
     updateMenu.setTypeOfDishes(menuDetails.getTypeOfDishes());
-    updateMenu.setPrice(menuDetails.getPrice());
+    updateMenu.setPriceInEuro(menuDetails.getPriceInEuro());
 
     menuRepository.save(updateMenu);
     return ResponseEntity.ok(updateMenu);
@@ -71,7 +55,7 @@ public class MenuController {
     @DeleteMapping("{id}")
     public ResponseEntity<Menu> deleteMenu(@PathVariable long id) {
         Menu menu = menuRepository.findById(id)
-                .orElseThrow();
+                .orElseThrow(() -> new ApiRequestException("Haha could not delete. Menu doesn't exist with id: " + id));
         menuRepository.delete(menu);
         return new ResponseEntity<>(menu, HttpStatus.NO_CONTENT);
     }
