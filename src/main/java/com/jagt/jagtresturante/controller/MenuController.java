@@ -42,7 +42,7 @@ public class MenuController {
     @PutMapping("{id}")
     public ResponseEntity<Menu> updateMenu(@PathVariable long id,@RequestBody Menu menuDetails) {
     Menu updateMenu = menuRepository.findById(id)
-            .orElseThrow();
+            .orElseThrow(() -> new ApiRequestException("Menu does not exist with id: " + id));
     updateMenu.setName(menuDetails.getName());
     updateMenu.setCategory(menuDetails.getCategory());
     updateMenu.setTypeOfDishes(menuDetails.getTypeOfDishes());
