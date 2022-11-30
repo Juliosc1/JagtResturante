@@ -14,7 +14,7 @@ import javax.persistence.*;
 @RequiredArgsConstructor
 
 @Entity
-@Table(name = "menus")
+@Table(name = "dishes")
 public class Menu {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
