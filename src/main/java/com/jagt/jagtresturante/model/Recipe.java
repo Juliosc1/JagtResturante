@@ -18,18 +18,18 @@ public class Recipe {
     private long id;
 
     @NonNull
-    @Column(name ="Ingredient")
-    private String ingredient;
+    @Column(name ="Ingredients")
+    private String ingredients;
 
     @NonNull
     @Column(name ="Measurement")
     private String measurement;
 
     @NonNull
-    @Column(name = "Kitchen Equipment")
+    @Column(name = "KitchenEquipment")
     private String kitchenEquipment;
 
     @NonNull
-    @Column(name = "Duration in Minutes")
+    @Column(name = "DurationInMinutes")
     private Integer durationInMM;
 }

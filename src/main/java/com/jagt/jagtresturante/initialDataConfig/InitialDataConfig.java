@@ -25,7 +25,8 @@ public class InitialDataConfig {
             menuRepository.saveAll(List.of(menu, menu1, menu2, menu3, menu4));
         };
     }
-    CommandLineRunner commandLineRunner(RecipeRepository recipeRepository) {
+    @Bean
+    CommandLineRunner commandLineRunner2(RecipeRepository recipeRepository) {
         return args -> {
             Recipe recipe = new Recipe("flour","two cups", "fork", 2);
             recipeRepository.saveAll(List.of(recipe));
