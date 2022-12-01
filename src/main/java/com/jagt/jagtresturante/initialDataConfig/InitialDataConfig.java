@@ -2,6 +2,9 @@ package com.jagt.jagtresturante.initialDataConfig;
 
 import com.jagt.jagtresturante.model.Menu;
 import com.jagt.jagtresturante.repository.MenuRepository;
+import com.jagt.jagtresturante.model.Recipe;
+import com.jagt.jagtresturante.repository.RecipeRepository;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,5 +24,12 @@ public class InitialDataConfig {
             Menu menu4 = new Menu("Pizza Ai Funghi", "Main Course", "Pizza", 13);
             menuRepository.saveAll(List.of(menu, menu1, menu2, menu3, menu4));
         };
+    }
+    CommandLineRunner commandLineRunner(RecipeRepository recipeRepository) {
+        return args -> {
+            Recipe recipe = new Recipe("flour","two cups", "fork", 2);
+            recipeRepository.saveAll(List.of(recipe));
+        };
+
     }
 }
