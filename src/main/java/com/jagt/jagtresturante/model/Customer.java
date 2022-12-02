@@ -3,8 +3,8 @@ package com.jagt.jagtresturante.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Clients")
-public class Client {
+@Table(name="Customers")
+public class Customer {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private long Id;
@@ -21,10 +21,10 @@ public class Client {
     @Column (name = "discount")
     private Integer discount;
 
-    public Client() {
+    public Customer() {
     }
 
-    public Client(String name, String email, Integer phone, Integer discount) {
+    public Customer(String name, String email, Integer phone, Integer discount) {
         this.name = name;
         this.email = email;
         this.phone = phone;
